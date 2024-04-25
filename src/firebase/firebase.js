@@ -7,12 +7,12 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCcYjOb3aHP_bCEHxcireMuGJsINqpNsuI",
-  authDomain: "enefti-5d110.firebaseapp.com",
-  projectId: "enefti-5d110",
-  storageBucket: "enefti-5d110.appspot.com",
-  messagingSenderId: "759473350585",
-  appId: "1:759473350585:web:4f7a3f49690bcbe54bb868"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 // Initialize Firebase
