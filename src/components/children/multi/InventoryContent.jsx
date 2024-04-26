@@ -13,7 +13,7 @@ export default function InventoryContent({ userEmail }) {
     const handleAddModalOpen = () => setAddModalOpen(true);
     const handleAddModalClose = () => {
         setAddModalOpen(false);
-        history.go()
+        history.go("/inventory")
     }
 
     const [items, setItems] = useState()

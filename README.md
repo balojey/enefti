@@ -2,7 +2,7 @@
 
 [Project Description](https://www.notion.so/ENEFTI-An-NFT-Marketplace-3767c4b83aaa455d8c0672baa13d8dd7)
 
-[Live app](https://enefti-5d110.web.app/)
+[Live app](https://enefti-orpin.vercel.app/)
 
 Enefti is an NFT marketplace that integrates circle’s programmable user-controlled wallets to streamline the challenges of wallet creation, and token transactions.
 
@@ -38,4 +38,4 @@ VITE_FIREBASE_APP_ID=""
 6. Build application
     `npm run build`
 
-This application was built with [React](https://react.dev) through [Vite](https://vitejs.dev), made beautiful with [Material UI](https://mui.com/material-ui), hosted on [Firebase](https://firebase.google.com), and logo made on [Namecheap](https://www.namecheap.com/logo-maker/).
+This application was built with [React](https://react.dev) through [Vite](https://vitejs.dev), made beautiful with [Material UI](https://mui.com/material-ui), hosted on [Vercel](https://vercel.com), and logo made on [Namecheap](https://www.namecheap.com/logo-maker/).
