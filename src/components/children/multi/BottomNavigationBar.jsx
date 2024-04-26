@@ -2,7 +2,6 @@ import { useState } from "react"
 import { Box, BottomNavigation, BottomNavigationAction } from "@mui/material"
 import { HomeOutlined, StorefrontOutlined, AccountCircleOutlined } from "@mui/icons-material"
 import { Link as RouterLink } from "react-router-dom"
-import { Link } from "@mui/material"
 
 export default function BottomNavigationBar({ value }) {
     return (

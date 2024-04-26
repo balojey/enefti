@@ -13,21 +13,18 @@ export default function InventoryContent({ userEmail }) {
     const handleAddModalOpen = () => setAddModalOpen(true);
     const handleAddModalClose = () => {
         setAddModalOpen(false);
-        history.go("/inventory")
     }
 
     const [items, setItems] = useState()
     
     useEffect(() => {
         async function populateInventory() {
-            // Get user wallet
             const wallet = await getWallet(userEmail)
 
             const q = query(collection(db, "nfts"), where("walletAddress", "==", wallet.address));
             const querySnapshot = await getDocs(q);
             let docs = []
             querySnapshot.forEach((doc) => {
-                // doc.data() is never undefined for query doc snapshots
                 docs.push(doc);
             })
             if (docs.length > 0) setItems(docs)

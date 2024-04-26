@@ -7,7 +7,6 @@ export default function InventoryItem({ itemId, item }) {
     const handleEditModalOpen = () => setEditModalOpen(true);
     const handleEditModalClose = () => {
         setEditModalOpen(false);
-        history.go()
     }
     
     return (

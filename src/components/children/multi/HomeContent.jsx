@@ -8,6 +8,7 @@ import ItemsPlaceholder from "./ItemsPlaceholder";
 
 export default function HomeContent({ userEmail }) {
     const [items, setItems] = useState(null)
+    const [loading, setLoading] = useState(false)
     
     useEffect(() => {
         async function populateMarketPlace() {
@@ -17,14 +18,13 @@ export default function HomeContent({ userEmail }) {
             const q = query(collection(db, "nfts"), where("walletAddress", "!=", wallet.address));
             const querySnapshot = await getDocs(q);
             let docs = []
-            // console.log(querySnapshot)
             querySnapshot.forEach((doc) => {
-                // doc.data() is never undefined for query doc snapshots
                 docs.push(doc);
             })
             if (docs.length > 0) setItems(docs)
         }
         populateMarketPlace()
+        setLoading(false)
     }, [userEmail])
 
     return (
@@ -35,11 +35,11 @@ export default function HomeContent({ userEmail }) {
             my: 3,
             px: 1,
         }}>
-            {items ? items.map((item) => 
-                (<MarketPlaceItem key={item.id} userEmail={userEmail} itemId={item.id} item={item.data()} />)
-            ) : (
-                <ItemsPlaceholder heading={"Whoops"} body={"All other items has been sold."} />
-            )}
+            {!items
+            ? <ItemsPlaceholder heading={"Whoops"} body={"If you are still seeing this, it means there are no more items to buy."} />
+            : items.map((item) => (
+                <MarketPlaceItem key={item.id} userEmail={userEmail} itemId={item.id} item={item.data()} />
+            ))}
         </Container>
     )
 }
