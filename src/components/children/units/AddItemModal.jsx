@@ -25,7 +25,7 @@ const style = {
     alignItems: "center"
 };
 
-export default function AddItemModal({ addModalOpen, handleAddModalClose }) {
+export default function AddItemModal({ userEmail, addModalOpen, handleAddModalClose }) {
     const [artUrl, setArtUrl] = useState("");
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -35,7 +35,7 @@ export default function AddItemModal({ addModalOpen, handleAddModalClose }) {
         if (artUrl === "" || title === "" || price < 0) return
 
         // Get user wallet
-        const wallets = await listWallets(currentUser.email);
+        const wallets = await listWallets(userEmail);
         const wallet = wallets[0]
 
         // Add a new item

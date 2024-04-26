@@ -21,7 +21,6 @@ const createWallet = async (userId) => {
 }
 
 const execute = (userToken, encryptionKey, challengeId) => {
-  localStorage.setItem("transactionStatus", "")
   circleSDK.setAuthentication({
     userToken,
     encryptionKey,
@@ -44,7 +43,7 @@ const execute = (userToken, encryptionKey, challengeId) => {
       console.log(`signature: ${result.data?.signature}`)
     }
 
-    localStorage.setItem("transactionStatus", result.status)
+    history.go()
   })
 }
 

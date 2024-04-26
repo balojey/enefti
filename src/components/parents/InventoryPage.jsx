@@ -10,13 +10,6 @@ import CreateWalletPlease from '../children/multi/CreateWalletPlease';
 import ChooseAWalletNotification from "../children/multi/ItemsPlaceholder";
 
 export default function InventoryPage() {
-    const [addModalOpen, setAddModalOpen] = useState(false);
-    const handleAddModalOpen = () => setAddModalOpen(true);
-    const handleAddModalClose = () => {
-        setAddModalOpen(false);
-        history.go()
-    }
-
     // bottom nav bar
     let navVal
     if (window.location.pathname === "/inventory") {
@@ -70,7 +63,7 @@ export default function InventoryPage() {
     return (
         <>
             <TopBar currentUser={currentUser.currentUser} />
-            <InventoryContent userEmail={currentUser.currentUser.email} addModalOpen={addModalOpen} handleAddModalClose={handleAddModalClose} handleAddModalOpen={handleAddModalOpen} /> 
+            <InventoryContent userEmail={currentUser.currentUser.email} /> 
             <BottomNavigationBar value={navVal} />
         </>
     )

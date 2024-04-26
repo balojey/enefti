@@ -8,7 +8,14 @@ import { db } from "../../../firebase/firebase"
 import { getWallet } from "../../../circle/utils"
 import ItemsPlaceholder from "./ItemsPlaceholder";
 
-export default function InventoryContent({ userEmail, addModalOpen, handleAddModalClose, handleAddModalOpen }) {
+export default function InventoryContent({ userEmail }) {
+    const [addModalOpen, setAddModalOpen] = useState(false);
+    const handleAddModalOpen = () => setAddModalOpen(true);
+    const handleAddModalClose = () => {
+        setAddModalOpen(false);
+        history.go()
+    }
+
     const [items, setItems] = useState()
     
     useEffect(() => {
@@ -52,7 +59,7 @@ export default function InventoryContent({ userEmail, addModalOpen, handleAddMod
                     )}
                 </Grid>
             </Box>
-            <AddItemModal addModalOpen={addModalOpen} handleAddModalClose={handleAddModalClose} />
+            <AddItemModal userEmail={userEmail} addModalOpen={addModalOpen} handleAddModalClose={handleAddModalClose} />
         </Container>
     )
 }
