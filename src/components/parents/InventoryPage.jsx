@@ -12,11 +12,14 @@ import ChooseAWalletNotification from "../children/multi/ItemsPlaceholder";
 export default function InventoryPage() {
     const [addModalOpen, setAddModalOpen] = useState(false);
     const handleAddModalOpen = () => setAddModalOpen(true);
-    const handleAddModalClose = () => setAddModalOpen(false);
+    const handleAddModalClose = () => {
+        setAddModalOpen(false);
+        reloadPage();
+    }
 
-    const [chooseWallet, setChooseWallet] = useState(false);
-    const handleChooseWalletOpen = () => setChooseWallet(true);
-    const handleChooseWalletClose = () => setChooseWallet(false);
+    const reloadPage = () => {
+        history.go()
+    }
 
     // bottom nav bar
     let navVal
@@ -63,7 +66,7 @@ export default function InventoryPage() {
         return (
             <>
                 <TopBar currentUser={currentUser.currentUser} />
-                <CreateWalletPlease currentUser={currentUser.currentUser} />
+                <CreateWalletPlease reloadPage={reloadPage} currentUser={currentUser.currentUser} />
                 <BottomNavigationBar value={navVal} />
             </>
         )
@@ -71,7 +74,7 @@ export default function InventoryPage() {
     return (
         <>
             <TopBar currentUser={currentUser.currentUser} />
-            <InventoryContent userEmail={currentUser.currentUser.email} addModalOpen={addModalOpen} handleAddModalClose={handleAddModalClose} handleAddModalOpen={handleAddModalOpen} chooseWallet={chooseWallet} handleChooseWalletClose={handleChooseWalletClose} handleChooseWalletOpen={handleChooseWalletOpen} /> 
+            <InventoryContent reloadPage={reloadPage} userEmail={currentUser.currentUser.email} addModalOpen={addModalOpen} handleAddModalClose={handleAddModalClose} handleAddModalOpen={handleAddModalOpen} /> 
             <BottomNavigationBar value={navVal} />
         </>
     )

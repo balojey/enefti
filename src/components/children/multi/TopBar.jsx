@@ -24,7 +24,12 @@ export default function TopBar({ currentUser }) {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" elevation={0}>
-                <Toolbar>
+                <Toolbar sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                }}>
                     <Logo flexGrow={1}/>
                     <CurrentWalletBalance balance={USDCBalance} />
                 </Toolbar>

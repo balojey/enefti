@@ -5,7 +5,9 @@ import { useState } from "react";
 export default function MarketPlaceItem({ itemId, item, userEmail }) {
     const [buyOpen, setBuyOpen] = useState(false);
     const handleBuyOpen = () => setBuyOpen(true);
-    const handleBuyClose = () => setBuyOpen(false);
+    const handleBuyClose = () => {
+        setBuyOpen(false);
+    }
 
     return (
         <Box sx={{

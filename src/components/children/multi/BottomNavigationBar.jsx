@@ -15,7 +15,7 @@ export default function BottomNavigationBar({ value }) {
         }}>
         <BottomNavigation
             showLabels
-            value={value}
+            // value={value}
         >
             <BottomNavigationAction component={RouterLink} to="/" label="Home" icon={<HomeOutlined />} />
             <BottomNavigationAction component={RouterLink} to="/inventory" label="Inventory" icon={<StorefrontOutlined />} />

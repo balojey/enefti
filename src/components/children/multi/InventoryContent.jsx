@@ -8,7 +8,7 @@ import { db } from "../../../firebase/firebase"
 import { getWallet } from "../../../circle/utils"
 import ItemsPlaceholder from "./ItemsPlaceholder";
 
-export default function InventoryContent({ userEmail, addModalOpen, handleAddModalClose, handleAddModalOpen }) {
+export default function InventoryContent({ reloadPage, userEmail, addModalOpen, handleAddModalClose, handleAddModalOpen }) {
     const [items, setItems] = useState()
     
     useEffect(() => {
@@ -46,7 +46,7 @@ export default function InventoryContent({ userEmail, addModalOpen, handleAddMod
             <Box sx={{ flexGrow: 1, my: 5 }}>
                 <Grid container spacing={2}>
                     {items ? items.map((item) => (
-                        <InventoryItem key={item.id} itemId={item.id} item={item.data()} />
+                        <InventoryItem reloadPage={reloadPage} key={item.id} itemId={item.id} item={item.data()} />
                     )) : (
                         <ItemsPlaceholder heading={"Oh oh!"} body={"You have no items in your inventory. You can add though!"} />
                     )}

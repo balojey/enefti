@@ -66,7 +66,7 @@ export default function AddItemModal({ addModalOpen, handleAddModalClose }) {
                     <TextInput label="Art URL" value={artUrl} setfunc={setArtUrl} />
                     <TextInput label="Title" value={title} setfunc={setTitle} />
                     <TextInput label="Description" value={description} setfunc={setDescription} />
-                    <TextInput label="Price" value={price} setfunc={setPrice} />
+                    <TextInput label="Price" value={price} setfunc={setPrice} type={"number"} />
                     <LargeButton content={"ADD"} handler={handleAddItem} />
                 </Box>
             </Modal>

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Box, TextField } from "@mui/material"
 
-export default function TextInput({ label, value="", setfunc }) {
+export default function TextInput({ label, value="", setfunc, type="text" }) {
 
     return (
         <TextField
@@ -15,6 +15,7 @@ export default function TextInput({ label, value="", setfunc }) {
             onChange={(event) => {
                 setfunc(event.target.value);
             }}
+            type={type}
         />
     )
 }

@@ -38,4 +38,4 @@ VITE_FIREBASE_APP_ID=""
 6. Build application
     `npm run build`
 
-This application was built with [React](https://react.dev) through [Vite](https://vitejs.dev), made beautiful with [Material UI](https://mui.com/material-ui) and hosted on [Firebase](https://firebase.google.com).
+This application was built with [React](https://react.dev) through [Vite](https://vitejs.dev), made beautiful with [Material UI](https://mui.com/material-ui), hosted on [Firebase](https://firebase.google.com), and logo made on [Namecheap](https://www.namecheap.com/logo-maker/).

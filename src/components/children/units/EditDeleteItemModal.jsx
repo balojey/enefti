@@ -2,7 +2,7 @@ import { Box, Button, Modal } from "@mui/material"
 import TextInput from "./TextInput";
 import LargeButton from "./LargeButton";
 import { useState } from "react"
-import { updateDoc, doc } from "firebase/firestore";
+import { updateDoc, doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../../firebase/firebase";
 
 const style = {
@@ -43,6 +43,11 @@ export default function EditDeleteItemModal({ itemId, item, editModalOpen, handl
         handleEditModalClose()
     }
 
+    const handleDeleteItem = async (item) => {
+        await deleteDoc(doc(db, "nfts", itemId))
+        handleEditModalClose()
+    }
+
     return (
         <div>
             <Modal
@@ -55,9 +60,9 @@ export default function EditDeleteItemModal({ itemId, item, editModalOpen, handl
                     <TextInput label="Art Url" value={artUrl} setfunc={setArtUrl} />
                     <TextInput label="Title" value={title} setfunc={setTitle} />
                     <TextInput label="Description" value={description} setfunc={setDescription} />
-                    <TextInput label="Price" value={price} setfunc={setPrice} />
+                    <TextInput label="Price" value={price} setfunc={setPrice} type="number" />
                     <LargeButton content={"EDIT"} handler={handleEditItem} />
-                    <LargeButton content={"DELETE"} bgcolor={"error.main"}/>
+                    <LargeButton content={"DELETE"} bgcolor={"error.main"} handler={handleDeleteItem}/>
                 </Box>
             </Modal>
         </div>
