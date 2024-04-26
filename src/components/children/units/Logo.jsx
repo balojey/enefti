@@ -8,7 +8,7 @@ export default function Logo({ flexGrow }) {
         <Box
             component="img"
             alt="An NFT Marketplace"
-            src="../../../public/default-monochrome.svg"
+            src="/default-monochrome.svg"
             sx={{
                 height: 50,
                 width: 100,
