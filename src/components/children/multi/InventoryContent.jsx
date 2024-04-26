@@ -8,7 +8,7 @@ import { db } from "../../../firebase/firebase"
 import { getWallet } from "../../../circle/utils"
 import ItemsPlaceholder from "./ItemsPlaceholder";
 
-export default function InventoryContent({ reloadPage, userEmail, addModalOpen, handleAddModalClose, handleAddModalOpen }) {
+export default function InventoryContent({ userEmail, addModalOpen, handleAddModalClose, handleAddModalOpen }) {
     const [items, setItems] = useState()
     
     useEffect(() => {

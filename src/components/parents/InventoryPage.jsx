@@ -14,10 +14,6 @@ export default function InventoryPage() {
     const handleAddModalOpen = () => setAddModalOpen(true);
     const handleAddModalClose = () => {
         setAddModalOpen(false);
-        reloadPage();
-    }
-
-    const reloadPage = () => {
         history.go()
     }
 
@@ -66,7 +62,7 @@ export default function InventoryPage() {
         return (
             <>
                 <TopBar currentUser={currentUser.currentUser} />
-                <CreateWalletPlease reloadPage={reloadPage} currentUser={currentUser.currentUser} />
+                <CreateWalletPlease currentUser={currentUser.currentUser} />
                 <BottomNavigationBar value={navVal} />
             </>
         )
@@ -74,7 +70,7 @@ export default function InventoryPage() {
     return (
         <>
             <TopBar currentUser={currentUser.currentUser} />
-            <InventoryContent reloadPage={reloadPage} userEmail={currentUser.currentUser.email} addModalOpen={addModalOpen} handleAddModalClose={handleAddModalClose} handleAddModalOpen={handleAddModalOpen} /> 
+            <InventoryContent userEmail={currentUser.currentUser.email} addModalOpen={addModalOpen} handleAddModalClose={handleAddModalClose} handleAddModalOpen={handleAddModalOpen} /> 
             <BottomNavigationBar value={navVal} />
         </>
     )
