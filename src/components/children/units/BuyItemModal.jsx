@@ -23,14 +23,16 @@ export default function BuyItemModal({ userEmail, itemId, item, open, handleBuyC
         // Get user wallet
         const wallet = await getWallet(userEmail)
 
-        await transact(userEmail, item.price, item.walletAddress)
+        const result = await transact(userEmail, item.price, item.walletAddress)
 
         // Update bought item
-        const itemRef = doc(db, "nfts", itemId);;
-        // await updateDoc(itemRef, {
-        //     walletAddress: wallet.address,
-        //     dateBought: new Date(Date.now()),
-        // })
+        if (result) {
+            const itemRef = doc(db, "nfts", itemId);;
+            await updateDoc(itemRef, {
+                walletAddress: wallet.address,
+                dateBought: new Date(Date.now()),
+            })
+        }
 
         handleBuyClose()
     }

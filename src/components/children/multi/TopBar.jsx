@@ -5,6 +5,7 @@ import CurrentWalletBalance from "../units/CurrentWalletBalance"
 import { Toolbar } from "@mui/material";
 import { useEffect, useState } from "react";
 import { listWallets, getTokenBalances, createUserToken } from "../../../circle/circle";
+import { getWallet } from "../../../circle/utils";
 
 
 export default function TopBar({ currentUser }) {
@@ -12,11 +13,10 @@ export default function TopBar({ currentUser }) {
 
     useEffect(() => {
         async function getBalance() {
-            const wallets = await listWallets(currentUser.email);
-            const wallet = wallets[0]
+            const wallet = await getWallet(currentUser.email);
             const { userToken } = await createUserToken(wallet.userId)
             const balances = await getTokenBalances(wallet.userId, userToken, wallet.id)
-            setUSDCBalance(balances.toReversed()[0].amount)
+            setUSDCBalance(balances[1].amount)
         }
         getBalance()
     }, [currentUser])

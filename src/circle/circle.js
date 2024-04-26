@@ -165,29 +165,50 @@ const useFaucet = (address) => {
 }
 
 const getTokenBalances = (userId, userToken, walletId) => {
+    // const options = {
+    // method: 'POST',
+    // url: import.meta.env.VITE_BACKEND_API + "/fetch-wallet",
+    // data: {
+    //     userId: userId,
+    //     userToken: userToken,
+    //     walletId: walletId
+    // }
+    // };
+
+    // return axios
+    // .request(options)
+    // .then(function (response) {
+    //     const tokenBalances = response.data.tokenBalances
+    //     // console.log(tokenBalances);
+    //     return tokenBalances
+    // })
+    // .catch(function (error) {
+    //     console.error(error);
+    // });
+
     const options = {
-    method: 'POST',
-    url: import.meta.env.VITE_BACKEND_API + "/fetch-wallet",
-    data: {
-        userId: userId,
-        userToken: userToken,
-        walletId: walletId
-    }
+        method: 'GET',
+        url: import.meta.env.VITE_CIRCLE_API + `/wallets/${walletId}/balances`,
+        headers: {
+            accept: 'application/json',
+            authorization: 'Bearer ' + import.meta.env.VITE_CIRCLE_API_KEY
+        },
+        data: {
+            userToken: userToken,
+        }
     };
 
     return axios
     .request(options)
     .then(function (response) {
-        const tokenBalances = response.data.tokenBalances
-        // console.log(tokenBalances);
-        return tokenBalances
+        return response.data.data.tokenBalances
     })
     .catch(function (error) {
         console.error(error);
     });
 }
 
-const getChallengeIdForOutboundTransfer = (amount, destinationAddress, walletId, userId, userToken) => {
+const getChallengeIdForOutboundTransfer = async (amount, destinationAddress, walletId, userId, userToken, tokenId) => {
     const options = {
     method: 'POST',
     url: import.meta.env.VITE_BACKEND_API + "/create-challenge-outbound-transfer",
@@ -196,14 +217,14 @@ const getChallengeIdForOutboundTransfer = (amount, destinationAddress, walletId,
         userToken: userToken,
         walletId: walletId,
         amount: amount,
-        destinationAddress: destinationAddress
+        destinationAddress: destinationAddress,
+        tokenId: tokenId
     }
     };
 
     return axios
     .request(options)
     .then(function (response) {
-        console.log(response.data)
         return response.data.challengeId
     })
     .catch(function (error) {

@@ -1,4 +1,4 @@
-import { circleSDK, createUser, createUserToken, generateChallengeId, listWallets, getChallengeIdForOutboundTransfer } from "./circle";
+import { circleSDK, createUser, createUserToken, generateChallengeId, listWallets, getChallengeIdForOutboundTransfer, getTokenBalances } from "./circle";
 
 
 const createNewUser = async (user) => {
@@ -17,33 +17,34 @@ const createWallet = async (userId) => {
   const challengeId = await generateChallengeId(userId, userToken)
 
   // Pass to Sdk for pin creation and security questions
-  await execute(userToken, encryptionKey, challengeId)
+  if (challengeId) execute(userToken, encryptionKey, challengeId)
 }
 
-const execute = async (userToken, encryptionKey, challengeId) => {
+const execute = (userToken, encryptionKey, challengeId) => {
+  localStorage.setItem("transactionStatus", "")
   circleSDK.setAuthentication({
     userToken,
     encryptionKey,
   })
-  console.log("Authenticated!")
   circleSDK.execute(challengeId, (error, result) => {
-    console.log("In execute")
-      if (error) {
-        console.log(
-          `${error?.code?.toString() || 'Unknown code'}: ${
-            error?.message ?? 'Error!'
-          }`
-        )
+    if (error) {
+      console.log(
+        `${error?.code?.toString() || 'Unknown code'}: ${
+          error?.message ?? 'Error!'
+        }`
+      )
 
-        return
-      }
+      return
+    }
 
-      console.log(`Challenge: ${result.type}`)
-      console.log(`status: ${result.status}`)
+    console.log(`Challenge: ${result.type}`)
+    console.log(`status: ${result.status}`)
 
-      if (result.data) {
-        console.log(`signature: ${result.data?.signature}`)
-      }
+    if (result.data) {
+      console.log(`signature: ${result.data?.signature}`)
+    }
+
+    localStorage.setItem("transactionStatus", result.status)
   })
 }
 
@@ -56,8 +57,14 @@ const getWallet = async (userId) => {
 const transact = async (userId, amount, destinationAddress) => {
   const wallet = await getWallet(userId)
   const { userToken, encryptionKey } = await createUserToken(userId)
-  const challengeId = await getChallengeIdForOutboundTransfer(amount, destinationAddress, wallet.id, userId, userToken)
-  await execute(userToken, encryptionKey, challengeId)
+  const tokenBalances = await getTokenBalances(userId, userToken, wallet.id)
+  const tokenId = tokenBalances[1].token.id
+  const challengeId = await getChallengeIdForOutboundTransfer(amount, destinationAddress, wallet.id, userId, userToken, tokenId)
+  if (challengeId) {
+    execute(userToken, encryptionKey, challengeId)
+    return true
+  }
+  return false
 }
 
 export { createNewUser, createWallet, getWallet, transact }

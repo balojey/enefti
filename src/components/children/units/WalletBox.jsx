@@ -13,16 +13,10 @@ export default function WalletBox({ wallet }) {
         async function getBalances() {
             const { userToken } = await createUserToken(wallet.userId)
             const tokenBalances = await getTokenBalances(wallet.userId, userToken, wallet.id);
-            setUSDCBalance(tokenBalances.toReversed()[0].amount)
+            setUSDCBalance(tokenBalances[1].amount)
         }
         getBalances()
     }, [wallet])
-
-    // const handleCurrentWalletBalance = () => {
-    //     localStorage.setItem("currentWalletId", wallet.id)
-    //     localStorage.setItem("currentWalletAddress", wallet.address)
-    //     localStorage.setItem("currentWalletBalance", USDCBalance)
-    // }
 
     return (
         <Box
@@ -52,7 +46,6 @@ export default function WalletBox({ wallet }) {
             }}>
                 <Typography variant="p" component="p" sx={{mr: 2}}>${USDCBalance}</Typography>
                 <Button variant="contained" onClick={handleUseFaucet} sx={{mr: 2}}>Faucet</Button>
-                {/* <Button variant="contained" onClick={handleCurrentWalletBalance}>Use</Button> */}
             </Box>
         </Box>
     );

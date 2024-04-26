@@ -1,4 +1,4 @@
-import { Box, Stack, Button } from "@mui/material"
+import { Box, Stack, Button, Typography } from "@mui/material"
 import BuyItemModal from "./BuyItemModal";
 import { useState } from "react";
 
@@ -13,7 +13,8 @@ export default function MarketPlaceItem({ itemId, item, userEmail }) {
             height: 300,
             bgcolor: "secondary.main",
             borderRadius: 8,
-            mb: 5
+            mb: 5,
+            position: "relative",
         }}>
             <Stack spacing={0}>
             <Box
@@ -36,6 +37,20 @@ export default function MarketPlaceItem({ itemId, item, userEmail }) {
             }}>Buy</Button>
             </Stack>
             <BuyItemModal userEmail={userEmail} itemId={itemId} item={item} handleBuyClose={handleBuyClose} open={buyOpen} />
+            <Box sx={{
+                position: "absolute",
+                bottom: 30,
+                right: 15,
+                bgcolor: "secondary.main",
+                p: 1,
+                borderRadius: "50%",
+            }}>
+                <Typography variant="p" component="p" sx={{
+                    color: "white",
+                    fontWeight: "bold",
+                    fontSize: 20,
+                }}>${item.price}</Typography>
+            </Box>
         </Box>
     )
 }
