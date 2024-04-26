@@ -1,6 +1,6 @@
 # Enefti - An NFT Marketplace
 
-[Project Description](https://www.notion.so/ENEFTI-An-NFT-Marketplace-3767c4b83aaa455d8c0672baa13d8dd7)
+[Project Description](https://peaceful-sleep-735.notion.site/ENEFTI-An-NFT-Marketplace-3767c4b83aaa455d8c0672baa13d8dd7)
 
 [Live app](https://enefti-orpin.vercel.app/)
 
