@@ -46,7 +46,7 @@ export default function InventoryContent({ userEmail, addModalOpen, handleAddMod
             <Box sx={{ flexGrow: 1, my: 5 }}>
                 <Grid container spacing={2}>
                     {items ? items.map((item) => (
-                        <InventoryItem reloadPage={reloadPage} key={item.id} itemId={item.id} item={item.data()} />
+                        <InventoryItem key={item.id} itemId={item.id} item={item.data()} />
                     )) : (
                         <ItemsPlaceholder heading={"Oh oh!"} body={"You have no items in your inventory. You can add though!"} />
                     )}

@@ -2,12 +2,12 @@ import { Box, Stack, Button, Grid, Typography } from "@mui/material"
 import EditDeleteItemModal from "./EditDeleteItemModal"
 import { useState } from "react";
 
-export default function InventoryItem({ reloadPage, itemId, item }) {
+export default function InventoryItem({ itemId, item }) {
     const [editModalOpen, setEditModalOpen] = useState(false);
     const handleEditModalOpen = () => setEditModalOpen(true);
     const handleEditModalClose = () => {
         setEditModalOpen(false);
-        reloadPage();
+        history.go()
     }
     
     return (
